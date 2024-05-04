@@ -10,15 +10,24 @@
             align-items: center;
             min-height: 100vh;
             margin: 0;
-            background-color: #f4f4f4;
+            background-color: #0c0d0d;
         }
         img {
             max-width: 100%;
             height: auto;
         }
     </style>
+    <script>
+        function updateImage() {
+            var img = document.getElementById('nodeCountImage');
+            img.src = 'average_nodes_over_time.png?' + new Date().getTime();
+        }
+    </script>
 </head>
-<body>
-    <img src="average_nodes_over_time.png" alt="Autonomi Node Count">
+<body onload="updateImage();">
+    <img id="nodeCountImage" src="average_nodes_over_time.png" alt="Autonomi Node Count">
+    <script>
+        setInterval(updateImage, 200000);
+    </script>
 </body>
 </html>
