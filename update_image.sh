@@ -19,5 +19,5 @@ git add .
 git commit -m "Auto Update"
 
 # Push the commit to GitHub
-git push origin main
+git push origin main --force
 
