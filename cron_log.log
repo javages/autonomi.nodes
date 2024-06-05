@@ -4,3 +4,6 @@
  create mode 100644 cron_log.log
 To github.com:javages/autonomi.nodes.git
    bf8732c..140c689  main -> main
+Log file not found for node: safenode25
+Data logged to /home/wyse1/node_data.csv
+Average total nodes across nodes, excluding the top and bottom 5%: 13636.92
