@@ -3,19 +3,17 @@ import os
 import re
 import csv
 import datetime
-import numpy as np
 from pathlib import Path
-import plotly.graph_objects as go
 
 def exclude_percentiles_and_average(total_nodes_list):
     sorted_nodes = sorted(total_nodes_list)
     
     num_nodes = len(sorted_nodes)
-    if num_nodes < 7:
-        print("Not enough data to exclude 15% from both ends.")
+    if num_nodes < 20:  # Adjusted to ensure there are enough data points to exclude 5% from both ends
+        print("Not enough data to exclude 5% from both ends.")
         return None
     
-    cut_off = int(0.15 * num_nodes)
+    cut_off = int(0.05 * num_nodes)  # Change from 0.15 to 0.05 for 5% exclusion
     reduced_list = sorted_nodes[cut_off:-cut_off]
     
     if reduced_list:
@@ -73,7 +71,6 @@ def calculate_total_nodes(kbucket_data):
 
     return total_nodes
 
-
 def get_latest_kbucket_data(log_file):
     try:
         with open(log_file, 'r') as file:
@@ -111,7 +108,8 @@ def plot_current_node_count_as_gauge(current_value, min_value, max_value):
             'threshold': {
                 'line': {'color': "gray", 'width': 4},
                 'thickness': 0.75,
-                'value': max_value}
+                'value': max_value
+            }
         }
     ))
 
@@ -144,10 +142,10 @@ def main(node_base_path):
         if average_nodes is not None:
             timestamp = time_line() 
             log_data(timestamp, average_nodes)
-            print(f"Average total nodes across nodes, excluding the top and bottom 15%: {average_nodes:.2f}")
+            print(f"Average total nodes across nodes, excluding the top and bottom 5%: {average_nodes:.2f}")
             plot_current_node_count_as_gauge(average_nodes, 0, 20000)
         else:
-            print("Insufficient data after excluding top and bottom 15%.")
+            print("Insufficient data after excluding top and bottom 5%.")
     else:
         print("No node data found to calculate.")
 

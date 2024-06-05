@@ -12,15 +12,22 @@
     <style>
         body {
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
             margin: 0;
             background-color: #0c0d0d;
+            color: lightgrey;
         }
         img {
             max-width: 100%;
             height: auto;
+        }
+        .disclaimer {
+            margin-top: 10px;
+            font-size: 0.8em;
+            text-align: center;
         }
     </style>
     <script>
@@ -32,6 +39,7 @@
 </head>
 <body onload="updateImage();">
     <img id="nodeCountImage" src="average_nodes_over_time.png" alt="Autonomi Node Count">
+    <div class="disclaimer">This site displays an approximate network size only. It will update every 5 minutes.</div>
     <script>
         setInterval(updateImage, 200000);
     </script>
