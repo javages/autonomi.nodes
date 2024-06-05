@@ -12,7 +12,7 @@ cd $REPO_PATH
 # Copy the new image to the repository
 cp $IMAGE_PATH $REPO_PATH/average_nodes_over_time.png
 
-# Add the updated image to the staging area
+# Add only the updated image to the staging area
 git add average_nodes_over_time.png
 
 # Commit the change
